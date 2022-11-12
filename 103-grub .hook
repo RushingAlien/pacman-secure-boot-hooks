@@ -1,0 +1,9 @@
+[Trigger]
+Type = Package
+Operation = Upgrade
+Target = grub
+
+[Action]
+Description = Gracefully upgrading GRUB...
+When = PostTransaction
+Exec = /usr/bin/sh -c '/usr/bin/grub-install --target=x86_64-efi --bootloader-id="ArchSSD" --efi-directory=$(/usr/bin/bootctl -p) --sbat=/usr/share/grub/sbat.csv --no-nvram --modules="all_video boot cat chain echo efi_gop efi_uga efifwsetup ext2 fat font gettext gfxterm gzio halt help linux loadenv ls normal part_gpt part_msdos reboot search search_fs_file search_fs_uuid search_label terminal tpm video video_bochs video_cirrus video_colors video_fb zstd btrfs"'

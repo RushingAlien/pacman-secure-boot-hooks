@@ -1,0 +1,9 @@
+[Trigger]
+Type = Package
+Operation = Upgrade
+Target = systemd
+
+[Action]
+Description = Renaming systemd-bootx64.efi to grubx64.efi for shim compatibility...
+When = PostTransaction
+Exec =  /usr/bin/sh -c '/usr/bin/mv -f $(/usr/bin/bootctl -p)/EFI/BOOT/BOOTx64.efi $(/usr/bin/bootctl -p)/EFI/BOOT/grubx64.efi && /usr/bin/mv -f $(/usr/bin/bootctl -p)/EFI/BOOT/shimx64.efi $(/usr/bin/bootctl -p)/EFI/BOOT/BOOTx64.efi && /usr/bin/mv -f $(/usr/bin/bootctl -p)/EFI/systemd/systemd-bootx64.efi $(/usr/bin/bootctl -p)/EFI/systemd/grubx64.efi'

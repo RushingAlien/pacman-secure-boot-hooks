@@ -1,0 +1,9 @@
+[Trigger]
+Type = Package
+Operation = Upgrade
+Target = systemd
+
+[Action]
+Description = Signing systemd-boot with Machine Owner Key for Secure Boot...
+When = PostTransaction
+Exec =  /usr/bin/sh -c 'sbsign --key $(/usr/bin/bootctl -p)/secureboot/MOK.key --cert $(/usr/bin/bootctl -p)/secureboot/MOK.crt --output /usr/lib/systemd/boot/efi/systemd-bootx64.efi.signed /usr/lib/systemd/boot/efi/systemd-bootx64.efi'
